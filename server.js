@@ -4,8 +4,7 @@ const methodOverride = require('method-override');
 const expHbs = require("express-handlebars");
 
 const app = express();
-const routes = require('./controllers/routes.js');
-app.use('/', routes);
+
 
 app.use(express.static(__dirname + '/public'));
 
@@ -19,6 +18,9 @@ app.engine('handlebars', expHbs({
     defaultLayout: 'main'
 }));
 app.set('view engine', 'handlebars');
+
+let routes = require('./controllers/routes.js');
+app.use('/', routes);
 
 const PORT = process.env.PORT || 8080;
 
